@@ -1,0 +1,9 @@
+$theme-colors: (
+  "primary": #203262,
+  "secondary": #5b6bad,
+  "danger": rgba(91, 107, 173, 0.8),
+  "light": rgba(91, 107, 173, 0.6),
+  "dark": rgba(91, 107, 173, 0.2),
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
