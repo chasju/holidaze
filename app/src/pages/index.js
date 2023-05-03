@@ -1,14 +1,18 @@
-import { Poppins } from "next/font/google";
+import Search from "@/components/search/Search";
 import Head from "next/head";
-import Button from "react-bootstrap/Button";
-import NavComponent from "@/components/nav/nav.jsx";
-
-const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 
 export default function Home() {
   return (
     <div>
-      <NavComponent />
+      <Head>
+        <title>Holidaze - book your next stay here</title>
+        <meta name="description" content="Book your next stay here" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <main>
+        <Search />
+        <div>home page</div>
+      </main>
     </div>
   );
 }

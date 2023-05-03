@@ -16,6 +16,8 @@ $theme-colors: (
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+// NAV overrides
+
 .navbar-toggler-icon {
   background-image: unset;
   background-color: $primary;
@@ -44,4 +46,10 @@ $theme-colors: (
 
 .navbar-toggler-icon::after {
   translate: 0 10px;
+}
+
+// SEARCH overrides
+
+.form-control::placeholder {
+  color: $primary;
 }
