@@ -1,9 +1,47 @@
+$primary: #203262;
+$secondary: #5b6bad;
+$danger: #7785bc;
+$dark: #97a3d4;
+$light: #abb5de;
+$lighter: #c3ccf0;
+
 $theme-colors: (
-  "primary": #203262,
-  "secondary": #5b6bad,
-  "danger": rgba(91, 107, 173, 0.8),
-  "light": rgba(91, 107, 173, 0.6),
-  "dark": rgba(91, 107, 173, 0.2),
+  "primary": $primary,
+  "secondary": $secondary,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "lighter": $lighter,
 );
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.navbar-toggler-icon {
+  background-image: unset;
+  background-color: $primary;
+  display: block;
+  width: 25px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  background-color: $primary;
+  display: block;
+  width: 25px;
+  height: 5px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.navbar-toggler-icon::before {
+  translate: 0 -10px;
+  width: 17px;
+}
+
+.navbar-toggler-icon::after {
+  translate: 0 10px;
+}
