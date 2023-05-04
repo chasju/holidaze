@@ -54,6 +54,12 @@ export default function venuePage() {
               <h3 className="fs-3 text-primary"> Calendar</h3>
               <DateRange className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
             </div>
+            <div className="text-primary mt-3 d-flex align-items-center gap-2">
+              <img src="avatar.png" alt="avatar" className="rounded-circle shadow ratio ratio-1x1" style={{ width: 50 }} />
+              <Card.Text>
+                @owner <span className="text-danger">4 stars</span>
+              </Card.Text>
+            </div>
           </Card.Body>
         </Card>
       </Container>
