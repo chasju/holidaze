@@ -1,4 +1,5 @@
 import Search from "@/components/search/Search";
+import Card from "@/components/card/Card";
 import Head from "next/head";
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
       </Head>
       <main>
         <Search />
-        <div>home page</div>
+        <Card />
       </main>
     </div>
   );
