@@ -1,9 +1,21 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { Button, Card, Container, ListGroup } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { useState } from "react";
 
 export default function venuePage() {
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+
   return (
     <div>
       <Container className="mt-5">
@@ -37,6 +49,10 @@ export default function venuePage() {
                 <Card.Text className="text-secondary">Breakfast</Card.Text>
                 <Card.Text className="text-secondary">Pets</Card.Text>
               </div>
+            </div>
+            <div className="mt-5">
+              <h3 className="fs-3 text-primary"> Calendar</h3>
+              <DateRange className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
             </div>
           </Card.Body>
         </Card>
