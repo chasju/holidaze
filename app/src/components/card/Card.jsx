@@ -15,9 +15,11 @@ const CardComponent = () => {
           <Card.Body className="d-flex justify-content-between">
             <div>
               <Card.Title>
-                <h2 className="fs-4">Card Title</h2>
+                <h2 className="fs-4 text-primary">Card Title</h2>
               </Card.Title>
-              <Card.Text aria-label="Price per night">Price</Card.Text>
+              <Card.Text aria-label="Price per night" className="text-secondary">
+                Price
+              </Card.Text>
             </div>
             <div>
               <Card.Text aria-label="Max number of people" className="position-relative d-flex justify-content-center align-items-center" style={{ width: 35, height: 35 }}>
