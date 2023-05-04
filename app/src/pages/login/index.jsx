@@ -7,9 +7,11 @@ export default function loginPage() {
         <Form className="m-auto" style={{ maxWidth: 500 }}>
           <h1 className="text-primary fw-bold mb-3">Login</h1>
           <Form.Group className="mb-4" controlId="formBasicEmail">
+            <Form.Label visuallyHidden>email</Form.Label>
             <Form.Control type="email" placeholder="Enter email" className="border-light shadow py-3" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label visuallyHidden>password</Form.Label>
             <Form.Control type="password" placeholder="Password" className="border-light shadow py-3" />
           </Form.Group>
           <Button variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
