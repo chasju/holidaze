@@ -1,3 +1,3 @@
 export default function venuesPage() {
-  return <div>Venues page</div>;
+  return <div>my venues page</div>;
 }

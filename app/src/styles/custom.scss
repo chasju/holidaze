@@ -53,3 +53,33 @@ $theme-colors: (
 .form-control::placeholder {
   color: $primary;
 }
+
+// CALENDAR overrides
+
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrMonthAndYearPickers {
+  flex-wrap: wrap;
+}
+
+.rdrDateDisplayWrapper {
+  background-color: unset !important;
+}
+
+.rdrDateDisplayItem input {
+  color: $secondary !important;
+  font-weight: 600;
+}
+
+.rdrWeekDay {
+  color: $primary !important;
+  font-weight: 600 !important;
+}
+
+.rdrStartEdge,
+.rdrEndEdge,
+.rdrInRange {
+  color: $secondary !important;
+}
