@@ -9,7 +9,7 @@ const CardComponent = () => {
     <div className="mt-5">
       <Container>
         <Card className="border-0 shadow">
-          <Link href="/venues" className="text-decoration-none">
+          <Link href="/venue" className="text-decoration-none">
             <Card.Img variant="top" src="picture.jpg" alt="House" />
           </Link>
           <Card.Body className="d-flex justify-content-between">
