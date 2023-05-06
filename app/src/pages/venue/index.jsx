@@ -6,6 +6,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useState } from "react";
+import BookNow from "@/components/bookNow/BookNow";
 
 export default function venuePage() {
   const [date, setDate] = useState([
@@ -63,6 +64,7 @@ export default function venuePage() {
           </Card.Body>
         </Card>
       </Container>
+      <BookNow />
     </div>
   );
 }
