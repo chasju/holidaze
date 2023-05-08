@@ -53,8 +53,8 @@ const NavComponent = () => {
         <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown" className="d-none d-lg-flex justify-content-center align-items-center bg-light rounded-circle mt-3 text-primary" style={{ width: 50, height: 50 }}>
           <NavDropdown.Item href="/">Home</NavDropdown.Item>
           <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
-          <NavDropdown.Item href="/Login">Login</NavDropdown.Item>
-          <NavDropdown.Item href="/Register">Register</NavDropdown.Item>
+          <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+          <NavDropdown.Item href="/register">Register</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item>Log out</NavDropdown.Item>
         </NavDropdown>
