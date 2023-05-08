@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <NavComponent />
-      <main style={{ height: "100vh" }}>{children}</main>
+      <main style={{ minHeight: "100vh" }}>{children}</main>
       <FooterComponent />
     </div>
   );
