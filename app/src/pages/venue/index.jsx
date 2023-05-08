@@ -19,7 +19,7 @@ export default function venuePage() {
 
   return (
     <div>
-      <Container className="mt-5">
+      <Container className="mt-5" style={{ maxWidth: 700 }}>
         <Card className="border-0 ">
           <Link href="/venues" className="text-decoration-none">
             <Card.Img variant="top" src="picture.jpg" alt="House" />
