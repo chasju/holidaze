@@ -2,7 +2,7 @@ import { Button, Container, Form } from "react-bootstrap";
 
 export default function editPage() {
   return (
-    <Container>
+    <Container style={{ maxWidth: 700 }}>
       <div className="mt-5 d-flex justify-content-center">
         <img src="/avatar.png" alt="avatar" className="rounded-circle shadow ratio ratio-1x1" style={{ width: "50%", maxWidth: 350 }} />
       </div>
