@@ -6,7 +6,7 @@ import { Card } from "react-bootstrap";
 const CheckoutCard = () => {
   return (
     <>
-      <Card className="border-0 ">
+      <Card className="border-0 m-auto" style={{ maxWidth: 700 }}>
         <Link href="/venues" className="text-decoration-none">
           <Card.Img variant="top" src="picture.jpg" alt="House" />
         </Link>
