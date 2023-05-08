@@ -1,8 +1,7 @@
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const { default: Link } = require("next/link");
-const { Card } = require("react-bootstrap");
+import Link from "next/link";
+import { Card } from "react-bootstrap";
 
 const CheckoutCard = () => {
   return (
