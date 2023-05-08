@@ -83,3 +83,9 @@ $theme-colors: (
 .rdrInRange {
   color: $secondary !important;
 }
+
+// BUTTON overrides
+
+.btn.active {
+  background-color: #203262;
+}
