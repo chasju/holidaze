@@ -5,8 +5,8 @@ import { Card } from "react-bootstrap";
 
 const ProfileCard = () => {
   return (
-    <div className="mt-5">
-      <Card className="border-0 shadow">
+    <div className="mt-5 row row-lg-cols-2 gap-5 justify-content-between">
+      <Card className="border-0 shadow col-md-5 col-lg " style={{ maxWidth: 550 }}>
         <Link href="/venue" className="text-decoration-none">
           <Card.Img variant="top" src="picture.jpg" alt="House" />
         </Link>
