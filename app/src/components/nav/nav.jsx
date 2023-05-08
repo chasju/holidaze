@@ -2,15 +2,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavComponent = () => {
   return (
     <div>
-      <Navbar expand="lg" className="mt-3">
-        <Container>
-          <Nav className="bg-secondary shadow-sm px-4 rounded-1">
+      <Container className="d-lg-flex justify-content-between align-items-center">
+        <Navbar expand="lg" className="mt-3">
+          <Nav className="bg-secondary shadow-sm px-4 rounded-1 d-lg-none">
             <Nav.Link href="/create/venue">
               <FontAwesomeIcon icon={faPlus} className="text-white" />
             </Nav.Link>
@@ -18,9 +18,9 @@ const NavComponent = () => {
           <Navbar.Brand href="/" className="text-primary">
             HOLIDAZE
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto mt-5">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 d-lg-none" />
+          <Navbar.Collapse id="basic-navbar-nav" className="d-lg-none">
+            <Nav className="mt-5 d-lg-none">
               <Nav.Link href="/" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
                 HOME
               </Nav.Link>
@@ -43,14 +43,22 @@ const NavComponent = () => {
                 LOGOUT
               </Nav.Link>
             </Nav>
-            <Nav className="me-auto mt-5">
+            <Nav className="mt-5 d-lg-none">
               <Nav.Link href="/create/venue" className="bg-danger text-white fw-bold rounded-1 text-center py-3">
                 List your venue
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        </Navbar>
+        <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown" className="d-none d-lg-flex justify-content-center align-items-center bg-light rounded-circle mt-3 text-primary" style={{ width: 50, height: 50 }}>
+          <NavDropdown.Item href="/">Home</NavDropdown.Item>
+          <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+          <NavDropdown.Item href="/Login">Login</NavDropdown.Item>
+          <NavDropdown.Item href="/Register">Register</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Log out</NavDropdown.Item>
+        </NavDropdown>
+      </Container>
     </div>
   );
 };
