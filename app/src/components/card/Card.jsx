@@ -28,9 +28,9 @@ const CardComponent = ({ data }) => {
             </Card.Text>
           </div>
           <div>
-            <Card.Text aria-label="Max number of people" className="position-relative d-flex justify-content-center align-items-center" style={{ width: 50, height: 35 }}>
+            <Card.Text aria-label="Max number of people" className="d-flex justify-content-center align-items-baseline gap-1">
               <FontAwesomeIcon icon={faUser} />
-              <span className="position-absolute top-0 end-0">{data.maxGuests}</span>
+              <span>{data.maxGuests}</span>
             </Card.Text>
           </div>
         </Card.Body>
