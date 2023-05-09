@@ -1,8 +1,12 @@
 import Search from "@/components/search/Search";
 import Card from "@/components/card/Card";
 import Head from "next/head";
+import useGet from "@/hooks/useGet";
+import { Container } from "react-bootstrap";
 
 export default function Home() {
+  const { data } = useGet("https://api.noroff.dev/api/v1/holidaze/venues");
+
   return (
     <div>
       <Head>
@@ -12,7 +16,11 @@ export default function Home() {
       </Head>
       <main>
         <Search />
-        <Card />
+        <Container className="m-auto row row-lg-cols-2 gap-5 justify-content-between">
+          {data.map((item) => (
+            <Card key={item.id} data={item} />
+          ))}
+        </Container>
       </main>
     </div>
   );
