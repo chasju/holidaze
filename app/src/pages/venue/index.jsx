@@ -1,68 +1,29 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { Card, Container } from "react-bootstrap";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
-import { useState } from "react";
+import { Container } from "react-bootstrap";
 import BookNow from "@/components/bookNow/BookNow";
+import VenueCard from "@/components/venueCard/VenueCard";
+import useGet from "@/hooks/useGet";
+import { useRouter } from "next/router";
 
 export default function venuePage() {
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { data, isLoading, isError } = useGet(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`);
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (isError) {
+    <div>
+      <p>There was an error loading the content. Please contact us if the issue persists.</p>
+    </div>;
+  }
 
   return (
     <div>
       <Container className="mt-5" style={{ maxWidth: 700 }}>
-        <Card className="border-0 ">
-          <Link href="/venues" className="text-decoration-none">
-            <Card.Img variant="top" src="picture.jpg" alt="House" />
-          </Link>
-          <Card.Body>
-            <div className="d-flex justify-content-between">
-              <div>
-                <Card.Title>
-                  <h2 className="fs-4 text-primary">Card Title</h2>
-                </Card.Title>
-                <Card.Text aria-label="Price per night" className="text-secondary">
-                  Price
-                </Card.Text>
-              </div>
-              <div>
-                <Card.Text aria-label="Max number of people" className="position-relative d-flex justify-content-center align-items-center" style={{ width: 35, height: 35 }}>
-                  <FontAwesomeIcon icon={faUser} className="text-primary" />
-                  <span className="position-absolute top-0 start-0 text-primary">2</span>
-                </Card.Text>
-              </div>
-            </div>
-            <div className="mt-5">
-              <h3 className="fs-3 text-primary">Description</h3>
-              <Card.Text className="text-primary">Description goes here</Card.Text>
-              <div>
-                <Card.Text className="text-secondary">Wifi</Card.Text>
-                <Card.Text className="text-secondary">Parking</Card.Text>
-                <Card.Text className="text-secondary">Breakfast</Card.Text>
-                <Card.Text className="text-secondary">Pets</Card.Text>
-              </div>
-            </div>
-            <div className="mt-5">
-              <h3 className="fs-3 text-primary"> Calendar</h3>
-              <DateRange className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
-            </div>
-            <div className="text-primary mt-3 d-flex align-items-center gap-2">
-              <img src="avatar.png" alt="avatar" className="rounded-circle shadow ratio ratio-1x1" style={{ width: 50 }} />
-              <Card.Text>
-                @owner <span className="text-danger">4 stars</span>
-              </Card.Text>
-            </div>
-          </Card.Body>
-        </Card>
+        <VenueCard data={data} />
       </Container>
       <BookNow />
     </div>

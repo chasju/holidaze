@@ -12,7 +12,7 @@ const CardComponent = ({ data }) => {
 
   return (
     <div className="mt-5 shadow rounded-4 col-md-5 col-lg p-0" style={{ maxWidth: 550, minWidth: 290 }}>
-      <Card className="border-0 ">
+      <Card className="border-0 h-100">
         <Link href={`venue?id=${data.id}`} className="text-decoration-none">
           <Ratio aspectRatio="4x3">
             <Card.Img variant="top" onError={onImageError} src={data.media.length === 0 ? placeholderImage.src : data.media} alt={data.name} style={{ objectFit: "cover" }} />
@@ -21,7 +21,7 @@ const CardComponent = ({ data }) => {
         <Card.Body className="d-flex justify-content-between">
           <div>
             <Card.Title>
-              <h2 className="fs-4 text-primary">{data.name}</h2>
+              <h2 className="fs-4 text-primary text-capitalize">{data.name}</h2>
             </Card.Title>
             <Card.Text aria-label="Price per night" className="text-secondary">
               {data.price} kr/night
