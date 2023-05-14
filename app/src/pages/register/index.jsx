@@ -1,38 +1,10 @@
-import { BASE_URL } from "@/utils/baseUrl";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
-
-const postData = async ({ fullName, email, password, avatar }) => {
-  console.log(fullName, email, password, avatar);
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/auth/register`,
-      {
-        name: fullName,
-        email: email,
-        password: password,
-        avatar: avatar,
-        venueManager: true,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("Insert success message here");
-
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-};
+import registerData from "@/hooks/auth/register";
 
 const schema = yup.object({
   fullName: yup.string().required("Please provide your full name.").min(3, "Name is too short - must be minimum 3 characters."),
@@ -54,7 +26,7 @@ export default function registerPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   function onSubmit(data) {
-    postData(data);
+    registerData(data);
     setIsVisible(true);
     reset();
   }
