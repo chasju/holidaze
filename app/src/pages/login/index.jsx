@@ -3,13 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
+import Link from "next/link";
 
 const schema = yup.object({
-  password: yup
-    .string()
-    .required("Please provide a password.")
-    .min(8, "Password is too short - must be minimum 8 characters.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+  password: yup.string().required("Please provide a password.").min(8, "Password is too short - must be minimum 8 characters."),
   email: yup.string().email("Not a proper email").required("Please enter a valid email"),
 });
 
@@ -46,6 +43,9 @@ export default function loginPage() {
             <Form.Control {...register("password")} type="password" placeholder="Password" className="border-light shadow py-3" />
             <Form.Text>{errors.password?.message}</Form.Text>
           </Form.Group>
+          <div>
+            <Link href="/register">Not registered? Register here</Link>
+          </div>
           <Button variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
             Login
           </Button>
