@@ -2,8 +2,8 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
 import Link from "next/link";
+import loginUser from "@/hooks/auth/login";
 
 const schema = yup.object({
   password: yup.string().required("Please provide a password.").min(8, "Password is too short - must be minimum 8 characters."),
@@ -20,11 +20,8 @@ export default function loginPage() {
     resolver: yupResolver(schema),
   });
 
-  const [isVisible, setIsVisible] = useState(false);
-
   function onSubmit(data) {
-    console.log(data);
-    setIsVisible(true);
+    loginUser(data);
     reset();
   }
 

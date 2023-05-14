@@ -2,7 +2,6 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
 import Link from "next/link";
 import registerData from "@/hooks/auth/register";
 
@@ -23,11 +22,8 @@ export default function registerPage() {
     resolver: yupResolver(schema),
   });
 
-  const [isVisible, setIsVisible] = useState(false);
-
   function onSubmit(data) {
     registerData(data);
-    setIsVisible(true);
     reset();
   }
 
