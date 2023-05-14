@@ -1,7 +1,7 @@
 import { BASE_URL } from "@/utils/baseUrl";
 import axios from "axios";
 
-const registerData = async ({ fullName, email, password, avatar }) => {
+const registerUser = async ({ fullName, email, password, avatar }, handleShow, handleFail) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/auth/register`,
@@ -19,12 +19,15 @@ const registerData = async ({ fullName, email, password, avatar }) => {
       }
     );
 
-    console.log("Insert success message here");
+    // Opening register success modal
+    handleShow();
 
     return response;
   } catch (error) {
-    console.log(error);
+    const message = error?.response?.data?.errors?.[0]?.message;
+    // Sending error message
+    handleFail(message);
   }
 };
 
-export default registerData;
+export default registerUser;
