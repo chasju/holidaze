@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/utils/baseUrl";
 import Search from "@/components/search/Search";
 import Card from "@/components/card/Card";
 import Head from "next/head";
@@ -5,7 +6,7 @@ import useGet from "@/hooks/useGet";
 import { Container } from "react-bootstrap";
 
 export default function Home() {
-  const { data } = useGet("https://api.noroff.dev/api/v1/holidaze/venues");
+  const { data } = useGet(`${BASE_URL}/venues`);
 
   return (
     <div>

@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/utils/baseUrl";
 import { Container } from "react-bootstrap";
 import BookNow from "@/components/bookNow/BookNow";
 import VenueCard from "@/components/venueCard/VenueCard";
@@ -8,7 +9,7 @@ export default function venuePage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading, isError } = useGet(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`);
+  const { data, isLoading, isError } = useGet(`${BASE_URL}/venues/${id}`);
 
   if (isLoading) {
     return <div>Loading</div>;
