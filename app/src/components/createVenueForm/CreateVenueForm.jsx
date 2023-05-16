@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import countryList from "react-select-country-list";
+import Select from "react-select";
 // import createVenue from "@/hooks/create/createVenue";
 
 const schema = yup.object({
@@ -62,7 +64,12 @@ const CreateVenueForm = () => {
     }));
   };
 
-  console.log(metaCheck);
+  // Country dropdown
+
+  const [country, setCountry] = useState("");
+  const options = useMemo(() => countryList().data, []);
+
+  useEffect((item) => setCountry(item), []);
 
   return (
     <div>
@@ -116,7 +123,7 @@ const CreateVenueForm = () => {
             </Form.Group>
           </Col>
         </Row>
-
+        <Select instanceId="dropdown" placeholder="Country" options={options} onChange={setCountry} value={country} />
         <Button onClick={handleShow} variant="primary" type="button" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
           Create Venue
         </Button>
