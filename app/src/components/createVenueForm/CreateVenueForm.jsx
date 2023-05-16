@@ -9,10 +9,11 @@ import Select from "react-select";
 // import createVenue from "@/hooks/create/createVenue";
 
 const schema = yup.object({
-  image: yup.array().required("Please upload minimum one image."),
+  // image: yup.array().of(yup.string()).required("Please upload minimum one image."),
   title: yup.string().required("Please provide a title.").min(3, "Title is too short - must be minimum 3 characters."),
-  price: yup.number().required("Please provide price per night."),
-  maxGuests: yup.number().required("Minimum 1 guest."),
+  description: yup.string("Please provide a description").min(3, "Add a few words about your place"),
+  price: yup.number().required("Please provide price per night.").min(1, "Please provide price per night."),
+  maxGuests: yup.number().required("Minimum 1 guest.").min(1, "Please provide price per night."),
 });
 
 const CreateVenueForm = () => {
@@ -44,11 +45,6 @@ const CreateVenueForm = () => {
     setFailMessage(message);
   };
 
-  function onSubmit(data) {
-    // createVenue(data, handleShow, handleFail);
-    console.log(data);
-  }
-
   // Checking Meta
   const [metaCheck, setMetaCheck] = useState({
     wifi: false,
@@ -71,60 +67,71 @@ const CreateVenueForm = () => {
 
   useEffect((item) => setCountry(item), []);
 
+  function onSubmit(data) {
+    // createVenue(data, handleShow, handleFail);
+    const updated = { ...data, meta: metaCheck, country: country?.label };
+    console.log(updated);
+  }
+
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)} className="m-auto mt-4 " style={{ maxWidth: 500 }}>
-        <Form.Group className="mb-4" controlId="formBasicURL">
-          <Form.Label visuallyHidden>Image url</Form.Label>
-          <Form.Control type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" />
-        </Form.Group>
         {registerFail && (
           <Form.Group className="mb-3">
             <Form.Text className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</Form.Text>
           </Form.Group>
         )}
+        {/* <Form.Group className="mb-4" controlId="formBasicURL">
+          <Form.Label visuallyHidden>Image url</Form.Label>
+          <Form.Control {...register("image")} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
+
+          <Form.Text>{errors.image?.message}</Form.Text>
+        </Form.Group> */}
         <Form.Group className="mb-4" controlId="formBasicTitle">
           <Form.Label visuallyHidden>title</Form.Label>
-          <Form.Control type="text" placeholder="Title" className="border-light shadow py-3 text-primary" />
+          <Form.Control {...register("title")} type="text" placeholder="Title" className="border-light shadow py-3 text-primary" />
+          <Form.Text>{errors.title?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicTitle">
           <Form.Label visuallyHidden>description</Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder="Description" className="border-light shadow py-3 text-primary" />
+          <Form.Control {...register("description")} as="textarea" rows={3} placeholder="Description" className="border-light shadow py-3 text-primary" />
+          <Form.Text>{errors.description?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicTitle">
-          {["checkbox"].map((type) => (
-            <Row key={type} className="mb-3">
-              <Col>
-                <Form.Check onChange={() => handleCheckChange("wifi")} checked={metaCheck.wifi} inline label="wifi" name="meta" type={type} />
-              </Col>
-              <Col>
-                <Form.Check onChange={() => handleCheckChange("parking")} checked={metaCheck.parking} inline label="parking" name="meta" type={type} />
-              </Col>
-              <Col>
-                <Form.Check onChange={() => handleCheckChange("breakfast")} checked={metaCheck.breakfast} inline label="breakfast" name="meta" type={type} />
-              </Col>
-              <Col>
-                <Form.Check onChange={() => handleCheckChange("pets")} checked={metaCheck.pets} inline label="pets" name="meta" type={type} />
-              </Col>
-            </Row>
-          ))}
+          <Row className="mb-3">
+            <Col>
+              <Form.Check onChange={() => handleCheckChange("wifi")} checked={metaCheck.wifi} inline label="wifi" name="meta" />
+            </Col>
+            <Col>
+              <Form.Check onChange={() => handleCheckChange("parking")} checked={metaCheck.parking} inline label="parking" name="meta" />
+            </Col>
+            <Col>
+              <Form.Check onChange={() => handleCheckChange("breakfast")} checked={metaCheck.breakfast} inline label="breakfast" name="meta" />
+            </Col>
+            <Col>
+              <Form.Check onChange={() => handleCheckChange("pets")} checked={metaCheck.pets} inline label="pets" name="meta" />
+            </Col>
+            <Form.Text>{errors.meta?.message}</Form.Text>
+          </Row>
         </Form.Group>
         <Row>
           <Col>
             <Form.Group className="mb-4" controlId="formBasicPrice">
               <Form.Label visuallyHidden>price</Form.Label>
-              <Form.Control type="number" placeholder="Price per night" className="border-light shadow py-3 text-primary" />
+              <Form.Control {...register("price")} type="number" placeholder="Price per night" className="border-light shadow py-3 text-primary" />
+              <Form.Text>{errors.price?.message}</Form.Text>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="formBasicMaxGuests">
               <Form.Label visuallyHidden>max guests</Form.Label>
-              <Form.Control type="number" placeholder="Maximum guests" className="border-light shadow py-3 text-primary" />
+              <Form.Control {...register("maxGuests")} type="number" placeholder="Maximum guests" className="border-light shadow py-3 text-primary" />
+              <Form.Text>{errors.maxGuests?.message}</Form.Text>
             </Form.Group>
           </Col>
         </Row>
-        <Select instanceId="dropdown" placeholder="Country" options={options} onChange={setCountry} value={country} />
-        <Button onClick={handleShow} variant="primary" type="button" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
+        <Select required instanceId="dropdown" placeholder="Country" options={options} onChange={setCountry} value={country} />
+        <Button variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
           Create Venue
         </Button>
         <Modal show={show} onHide={handleClose}>
