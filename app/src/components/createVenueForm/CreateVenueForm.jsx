@@ -9,7 +9,13 @@ import Select from "react-select";
 // import createVenue from "@/hooks/create/createVenue";
 
 const schema = yup.object({
-  // image: yup.array().of(yup.string()).required("Please upload minimum one image."),
+  images: yup
+    .array()
+    .required("Please upload minimum one image.")
+    .test("imageArray", "Please enter valid URLs", (value) => {
+      if (!value) return true;
+      return value.every((url) => yup.string().url().isValidSync(url));
+    }),
   title: yup.string().required("Please provide a title.").min(3, "Title is too short - must be minimum 3 characters."),
   description: yup.string("Please provide a description").min(3, "Add a few words about your place"),
   price: yup.number().required("Please provide price per night.").min(1, "Please provide price per night."),
@@ -19,6 +25,7 @@ const schema = yup.object({
 const CreateVenueForm = () => {
   const {
     register,
+    setValue,
     handleSubmit,
     reset,
     formState: { errors },
@@ -67,11 +74,24 @@ const CreateVenueForm = () => {
 
   useEffect((item) => setCountry(item), []);
 
+  // Get images
+
+  const [imageArray, setImageArray] = useState([]);
+
+  const handleImageValue = (e) => {
+    setImageArray(e.target.value.split(/[ ,]+/).filter(Boolean));
+  };
+
   function onSubmit(data) {
+    // reset()
     // createVenue(data, handleShow, handleFail);
+
     const updated = { ...data, meta: metaCheck, country: country?.label };
     console.log(updated);
   }
+
+  console.log(imageArray);
+  // console.log(errors.imageArray?.message);
 
   return (
     <div>
@@ -81,12 +101,12 @@ const CreateVenueForm = () => {
             <Form.Text className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</Form.Text>
           </Form.Group>
         )}
-        {/* <Form.Group className="mb-4" controlId="formBasicURL">
+        <Form.Group className="mb-4" controlId="formBasicURL">
           <Form.Label visuallyHidden>Image url</Form.Label>
-          <Form.Control {...register("image")} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
+          <Form.Control {...register("images")} onChange={handleImageValue} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
 
-          <Form.Text>{errors.image?.message}</Form.Text>
-        </Form.Group> */}
+          <Form.Text>{errors.images?.message}</Form.Text>
+        </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicTitle">
           <Form.Label visuallyHidden>title</Form.Label>
           <Form.Control {...register("title")} type="text" placeholder="Title" className="border-light shadow py-3 text-primary" />
@@ -131,7 +151,7 @@ const CreateVenueForm = () => {
           </Col>
         </Row>
         <Select required instanceId="dropdown" placeholder="Country" options={options} onChange={setCountry} value={country} />
-        <Button variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
+        <Button onClick={() => setValue("images", imageArray)} variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
           Create Venue
         </Button>
         <Modal show={show} onHide={handleClose}>
