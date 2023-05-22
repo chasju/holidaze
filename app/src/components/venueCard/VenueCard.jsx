@@ -1,18 +1,13 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { useState } from "react";
-import { Card, Ratio } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import placeholderImage from "../../../public/house.jpg";
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
 
 const VenueCard = ({ data }) => {
-  const onImageError = (e) => {
-    e.target.src = placeholderImage.src;
-  };
-
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -23,11 +18,7 @@ const VenueCard = ({ data }) => {
 
   return (
     <Card className="border-0 ">
-      <Link href="/venues" className="text-decoration-none">
-        <Ratio aspectRatio={"4x3"}>
-          <Card.Img variant="top" onError={onImageError} src={data.media} alt={data.name} style={{ objectFit: "cover" }} />
-        </Ratio>
-      </Link>
+      <ImageCarousel data={data} />
       <Card.Body>
         <div className="d-flex justify-content-between">
           <div>
