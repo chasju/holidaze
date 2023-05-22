@@ -1,4 +1,5 @@
-const { Carousel, Ratio } = require("react-bootstrap");
+import Ratio from "react-bootstrap/Ratio";
+import Carousel from "react-bootstrap/Carousel";
 import placeholderImage from "../../../public/house.jpg";
 
 const ImageCarousel = ({ data }) => {

@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import ImageCarousel from "../ImageCarousel/ImageCarousel";
+import ImageCarousel from "../imageCarousel/ImageCarousel";
 
 const VenueCard = ({ data }) => {
   const [date, setDate] = useState([
