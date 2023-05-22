@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, Ratio, Row } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -92,6 +92,9 @@ const CreateVenueForm = () => {
 
   return (
     <div>
+      <Ratio aspectRatio={"4x3"}>
+        <Card.Img src={imageArray?.length ? imageArray[0] : "/house.jpg"} alt="preview uploaded image" style={{ objectFit: "cover" }} />
+      </Ratio>
       <Form onSubmit={handleSubmit(onSubmit)} className="m-auto mt-4 " style={{ maxWidth: 500 }}>
         {registerFail && <p className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</p>}
         <Form.Group className="mb-4" controlId="formBasicURL">

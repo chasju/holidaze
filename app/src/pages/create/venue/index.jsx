@@ -7,7 +7,6 @@ export default function createVenuePage() {
       <Container className="mt-5" style={{ maxWidth: 700 }}>
         <Card className="border-0">
           <h1 className="text-primary fw-bold mb-3">Create Venue</h1>
-          <Card.Img src="/picture.jpg" alt="preview uploaded image" />
           <CreateVenueForm />
         </Card>
       </Container>
