@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import countryList from "react-select-country-list";
 import Select from "react-select";
-// import createVenue from "@/hooks/create/createVenue";
+import createVenue from "@/hooks/create/createVenue";
 
 const schema = yup.object({
   images: yup
@@ -83,24 +83,17 @@ const CreateVenueForm = () => {
   };
 
   function onSubmit(data) {
-    // reset()
-    // createVenue(data, handleShow, handleFail);
+    reset();
 
     const updated = { ...data, meta: metaCheck, country: country?.label };
-    console.log(updated);
-  }
 
-  console.log(imageArray);
-  // console.log(errors.imageArray?.message);
+    createVenue(updated, handleShow, handleFail);
+  }
 
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)} className="m-auto mt-4 " style={{ maxWidth: 500 }}>
-        {registerFail && (
-          <Form.Group className="mb-3">
-            <Form.Text className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</Form.Text>
-          </Form.Group>
-        )}
+        {registerFail && <p className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</p>}
         <Form.Group className="mb-4" controlId="formBasicURL">
           <Form.Label visuallyHidden>Image url</Form.Label>
           <Form.Control {...register("images")} onChange={handleImageValue} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
