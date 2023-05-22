@@ -10,9 +10,11 @@ const NavComponent = () => {
     <div>
       <Container className="d-lg-flex justify-content-between align-items-center">
         <Navbar expand="lg" className="mt-3">
-          <Nav className="bg-secondary shadow-sm px-4 rounded-1 d-lg-none">
+          <Nav>
             <Nav.Link href="/create/venue">
-              <FontAwesomeIcon icon={faPlus} className="text-white" />
+              <div className="bg-secondary shadow-sm p-2 px-4 rounded-1 d-lg-none">
+                <FontAwesomeIcon icon={faPlus} className="text-white" />
+              </div>
             </Nav.Link>
           </Nav>
           <Navbar.Brand href="/" className="text-primary">
