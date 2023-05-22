@@ -52,6 +52,7 @@ $theme-colors: (
 
 .form-control::placeholder {
   color: $primary;
+  font-size: small;
 }
 
 // CALENDAR overrides
