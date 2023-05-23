@@ -6,7 +6,6 @@ import { useContext, useState } from "react";
 const { Form, Button, Modal } = require("react-bootstrap");
 
 const CheckoutForm = ({ guests, dateFrom, dateTo }) => {
-  console.log(guests, dateFrom, dateTo);
   const router = useRouter();
   const { id } = router.query;
 
@@ -21,20 +20,32 @@ const CheckoutForm = ({ guests, dateFrom, dateTo }) => {
 
   const handleShow = () => setShow(true);
 
+  // Fail message
+  const [registerFail, setRegisterFail] = useState(false);
+  const [failMessage, setFailMessage] = useState("");
+
+  const handleFail = (message) => {
+    setRegisterFail(true);
+    setFailMessage(message);
+  };
+
   const handleBooked = () => {
-    handleShow();
     dispatch({ type: "CLEAR_DATE" });
     onSubmit();
   };
 
   const onSubmit = () => {
-    console.log("onsubmit");
-    createBooking(guests, dateFrom, dateTo, id, handleShow);
+    createBooking(guests, dateFrom, dateTo, id, handleShow, handleFail);
   };
 
   return (
     <>
       <Form className="m-auto mt-4" style={{ maxWidth: 500 }}>
+        {registerFail && (
+          <Form.Group className="mb-3">
+            <p className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</p>
+          </Form.Group>
+        )}
         <h1 className="text-primary fw-bold mb-3">Checkout</h1>
         <Form.Group className="mb-4" controlId="formBasicName">
           <Form.Label visuallyHidden>name</Form.Label>
