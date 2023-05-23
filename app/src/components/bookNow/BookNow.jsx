@@ -1,6 +1,5 @@
 import { DatesContext } from "@/context/DatesContext";
-import { BASE_URL } from "@/utils/baseUrl";
-import axios from "axios";
+import getAllDates from "@/utils/getAllDates";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
@@ -12,21 +11,6 @@ const BookNow = ({ dates, price, id }) => {
     setSelectedDates(dates);
   }, [dates]);
 
-  const getAllDates = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const date = new Date(start.getTime());
-
-    let dates = [];
-
-    while (date <= end) {
-      dates.push(new Date(date));
-      date.setDate(date.getDate() + 1);
-    }
-
-    return dates;
-  };
-
   const allDates = getAllDates(selectedDates[0]?.startDate, selectedDates[0]?.endDate);
   const nights = allDates?.length - 1;
   const sumPerNight = price * nights;
@@ -35,8 +19,8 @@ const BookNow = ({ dates, price, id }) => {
   const router = useRouter();
 
   const handleBookNow = () => {
-    dispatch({ type: "NEW_DATE", payload: selectedDates });
-    router.push("/checkout", `/checkout?id=${id}`, { state: selectedDates });
+    dispatch({ type: "NEW_DATE", payload: { dates: selectedDates } });
+    router.push(`/checkout?id=${id}`, `/checkout?id=${id}`, { state: { selectedDates } });
   };
 
   return (

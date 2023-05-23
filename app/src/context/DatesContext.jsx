@@ -10,6 +10,8 @@ const DatesReducer = (state, action) => {
   switch (action.type) {
     case "NEW_DATE":
       return action.payload;
+    case "CLEAR_DATE":
+      return INITIAL_STATE;
     default:
       return state;
   }
