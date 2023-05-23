@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Card, Ratio } from "react-bootstrap";
 import placeholderImage from "../../../public/house.jpg";
+import CheckoutForm from "../checkoutForm/CheckoutForm";
 
 const CheckoutCard = ({ data }) => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const CheckoutCard = ({ data }) => {
 
   // Create select based off max Guests
   const [options, setOptions] = useState([]);
-  const [selectedAmount, setSelectedAmount] = useState("");
+  const [selectedAmount, setSelectedAmount] = useState(1);
 
   const handleChange = (e) => {
     setSelectedAmount(e.target.value);
@@ -97,6 +98,7 @@ const CheckoutCard = ({ data }) => {
           </select>
         </Card.Body>
       </Card>
+      <CheckoutForm guests={selectedAmount} dateFrom={dates[0]?.startDate} dateTo={dates[0]?.endDate} />
     </>
   );
 };

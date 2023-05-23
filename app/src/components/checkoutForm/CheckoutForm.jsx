@@ -1,11 +1,14 @@
 import { DatesContext } from "@/context/DatesContext";
+import createBooking from "@/hooks/create/createBooking";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const { Form, Button, Modal } = require("react-bootstrap");
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ guests, dateFrom, dateTo }) => {
+  console.log(guests, dateFrom, dateTo);
   const router = useRouter();
+  const { id } = router.query;
 
   // Success message
   const [show, setShow] = useState(false);
@@ -21,6 +24,12 @@ const CheckoutForm = () => {
   const handleBooked = () => {
     handleShow();
     dispatch({ type: "CLEAR_DATE" });
+    onSubmit();
+  };
+
+  const onSubmit = () => {
+    console.log("onsubmit");
+    createBooking(guests, dateFrom, dateTo, id, handleShow);
   };
 
   return (
