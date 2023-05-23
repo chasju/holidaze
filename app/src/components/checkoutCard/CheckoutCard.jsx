@@ -65,8 +65,6 @@ const CheckoutCard = ({ data }) => {
     }
   }, [data]);
 
-  console.log(options, selectedAmount);
-
   return (
     <>
       <Card className="border-0 m-auto" style={{ maxWidth: 700 }}>
@@ -93,12 +91,12 @@ const CheckoutCard = ({ data }) => {
               {sumPerNight} kr
             </Card.Text>
           </div>
-          <select value={selectedAmount} onChange={handleChange} name="numberOfGuests" id="numberOfGuests">
+          <select value={parseInt(selectedAmount)} onChange={handleChange} name="numberOfGuests" id="numberOfGuests">
             {options}
           </select>
         </Card.Body>
       </Card>
-      <CheckoutForm guests={selectedAmount} dateFrom={dates[0]?.startDate} dateTo={dates[0]?.endDate} />
+      <CheckoutForm guests={parseInt(selectedAmount)} dateFrom={dates[0]?.startDate} dateTo={dates[0]?.endDate} />
     </>
   );
 };

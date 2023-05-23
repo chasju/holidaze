@@ -32,7 +32,6 @@ const createVenue = async ({ title, description, price, maxGuests, images, meta,
 
     return response;
   } catch (error) {
-    console.log(error);
     const message = `${error?.message}. If the problem persists please contact us.`;
     // Sending error message
     handleFail(message);

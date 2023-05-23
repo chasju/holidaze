@@ -2,7 +2,7 @@ import { BASE_URL } from "@/utils/baseUrl";
 import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import axios from "axios";
 
-const createBooking = async (guests, dateFrom, dateTo, id, handleShow) => {
+const createBooking = async (guests, dateFrom, dateTo, id, handleShow, handleFail) => {
   try {
     const storageProfile = getStorage("profile");
     const accessToken = storageProfile.accessToken;
@@ -26,15 +26,12 @@ const createBooking = async (guests, dateFrom, dateTo, id, handleShow) => {
     // Opening register success modal
     handleShow();
 
-    console.log(response);
-
     return response;
   } catch (error) {
-    console.log(error);
     const message = `${error?.message}. If the problem persists please contact us.`;
-    console.log(message);
+
     // Sending error message
-    // handleFail(message);
+    handleFail(message);
   }
 };
 

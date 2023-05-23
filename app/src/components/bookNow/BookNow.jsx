@@ -35,15 +35,3 @@ const BookNow = ({ dates, price, id }) => {
 };
 
 export default BookNow;
-
-// const handleBookNow = async () => {
-//   try {
-//     const response = axios.post(`${BASE_URL}/bookings`, {
-//       dateFrom: selectedDates[0].startDate,
-//       dateTo: selectedDates[0].endDate
-//     })
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
