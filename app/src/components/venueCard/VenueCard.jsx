@@ -1,12 +1,13 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import ImageCarousel from "../imageCarousel/ImageCarousel";
 import BookNow from "../bookNow/BookNow";
+import getAllDates from "@/utils/getAllDates";
 
 const VenueCard = ({ data }) => {
   const [date, setDate] = useState([
@@ -16,6 +17,26 @@ const VenueCard = ({ data }) => {
       key: "selection",
     },
   ]);
+
+  // Get all bookings and disable those dates
+  const bookingsArray = data?.bookings;
+
+  const bookedDates = bookingsArray?.map((booking) => {
+    const dateFrom = new Date(booking.dateFrom);
+    const dateTo = new Date(booking.dateTo);
+
+    const allDates = getAllDates(dateFrom, dateTo);
+
+    return allDates;
+  });
+
+  const [bookedArray, setBookedArray] = useState([]);
+
+  useEffect(() => {
+    if (bookingsArray) {
+      setBookedArray([].concat(...bookedDates));
+    }
+  }, [bookingsArray]);
 
   return (
     <div>
@@ -51,7 +72,7 @@ const VenueCard = ({ data }) => {
             </div>
             <div className="mt-5">
               <h3 className="fs-3 text-primary"> Calendar</h3>
-              <DateRange className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
+              <DateRange disabledDates={bookedArray} className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
             </div>
           </Card.Body>
         </Card>

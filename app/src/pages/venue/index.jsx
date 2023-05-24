@@ -7,7 +7,7 @@ export default function venuePage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading, isError } = useGet(`${BASE_URL}/venues/${id}`);
+  const { data, isLoading, isError } = useGet(`${BASE_URL}/venues/${id}?_bookings=true`);
 
   if (isLoading) {
     return <div>Loading</div>;
