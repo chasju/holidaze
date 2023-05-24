@@ -2,22 +2,18 @@ import { BASE_URL } from "@/utils/baseUrl";
 import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import axios from "axios";
 
-const createVenue = async ({ title, description, price, maxGuests, images, meta, country }, handleShow, handleFail) => {
+const createBooking = async (guests, dateFrom, dateTo, id, handleShow, handleFail) => {
   try {
     const storageProfile = getStorage("profile");
     const accessToken = storageProfile.accessToken;
 
     const response = await axios.post(
-      `${BASE_URL}/venues`,
+      `${BASE_URL}/bookings`,
       {
-        name: title,
-        description: description,
-        price: price,
-        maxGuests: maxGuests,
-        media: images,
-        rating: 0,
-        meta: meta,
-        location: { country: country },
+        dateFrom: dateFrom,
+        dateTo: dateTo,
+        guests: guests,
+        venueId: id,
       },
       {
         headers: {
@@ -33,9 +29,10 @@ const createVenue = async ({ title, description, price, maxGuests, images, meta,
     return response;
   } catch (error) {
     const message = `${error?.message}. If the problem persists please contact us.`;
+
     // Sending error message
     handleFail(message);
   }
 };
 
-export default createVenue;
+export default createBooking;

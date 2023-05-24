@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import CardsResult from "@/components/cardsResult/CardsResult";
 
 export default function Home() {
-  const { data } = useGet(`${BASE_URL}/venues`);
+  const { data } = useGet(`${BASE_URL}/venues?sort=updated&sortOrder=desc`);
 
   const [venues, setVenues] = useState([]);
   const [searchResults, setSearchResults] = useState([]);

@@ -15,7 +15,7 @@ const CardComponent = ({ data }) => {
       <Card className="border-0 h-100">
         <Link href={`venue?id=${data.id}`} className="text-decoration-none">
           <Ratio aspectRatio="4x3">
-            <Card.Img variant="top" onError={onImageError} src={data.media.length === 0 ? placeholderImage.src : data.media} alt={data.name} style={{ objectFit: "cover" }} />
+            <Card.Img variant="top" onError={onImageError} src={data?.media?.length === 0 ? placeholderImage.src : data.media[0]} alt={data.name} style={{ objectFit: "cover" }} />
           </Ratio>
         </Link>
         <Card.Body className="d-flex justify-content-between">

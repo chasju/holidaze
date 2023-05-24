@@ -14,7 +14,6 @@ function useGet(url) {
 
         setData(response.data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
       }
       setIsLoading(false);
