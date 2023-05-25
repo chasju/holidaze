@@ -20,7 +20,6 @@ const schema = yup.object({
 });
 
 const UpdateVenueForm = ({ data }) => {
-  console.log(data);
   const {
     register,
     setValue,
@@ -72,21 +71,21 @@ const UpdateVenueForm = ({ data }) => {
 
   // Handle update inputs
   const [imageArray, setImageArray] = useState([]);
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [price, setPrice] = useState();
-  const [guests, setGuests] = useState();
-  const [location, setLocation] = useState();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("0");
+  const [guests, setGuests] = useState("0");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     if (data) {
-      setImageArray(data?.media);
-      setTitle(data?.name);
-      setDescription(data?.description);
-      setMetaCheck(data?.meta);
-      setPrice(data?.price);
-      setGuests(data?.maxGuests);
-      setLocation(data?.location?.country);
+      setImageArray(data?.media || []);
+      setTitle(data?.name || "");
+      setDescription(data?.description || "");
+      setMetaCheck(data?.meta || []);
+      setPrice(parseInt(data?.price) || "0");
+      setGuests(parseInt(data?.maxGuests) || "0");
+      setLocation(data?.location?.country || "");
     }
   }, [data]);
 
@@ -94,51 +93,62 @@ const UpdateVenueForm = ({ data }) => {
 
   const options = useMemo(() => countryList().data, []);
 
-  useEffect((item) => setLocation(item), []);
+  function onSubmit() {
+    const updated = {
+      media: imageArray,
+      name: title,
+      description: description,
+      meta: metaCheck,
+      price: Number(price),
+      maxGuests: Number(guests),
+      location: location,
+    };
 
-  function onSubmit(data) {
-    console.log(data);
-    // const updated = { ...data, meta: metaCheck, country: country?.label };
+    console.log(updated);
 
     // updateVenue(updated, handleShow, handleFail);
   }
 
+  const handleChange = (e, set) => {
+    set(e.target.value);
+  };
+
   return (
     <div>
       <Ratio aspectRatio={"4x3"}>
-        <Card.Img src={imageArray?.length ? imageArray[0] : "/house.jpg"} value={imageArray} alt="preview uploaded image" style={{ objectFit: "cover" }} />
+        <Card.Img src={imageArray?.length ? imageArray[0] : "/house.jpg"} alt="preview uploaded image" style={{ objectFit: "cover" }} />
       </Ratio>
       <Form onSubmit={handleSubmit(onSubmit)} className="m-auto mt-4 " style={{ maxWidth: 500 }}>
         {registerFail && <p className="fw-semibold text-primary bg-lighter p-2 rounded-1">{failMessage}</p>}
         <Form.Group className="mb-4" controlId="formBasicURL">
           <Form.Label>Image url</Form.Label>
-          <Form.Control {...register("images")} onChange={handleImageValue} value={imageArray} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
+          <Form.Control {...register("images")} onChange={handleImageValue} value={imageArray || []} type="url" placeholder="Image url" className="border-light shadow py-3 text-primary" multiple />
 
           <Form.Text>{errors.images?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicTitle">
           <Form.Label>Title</Form.Label>
-          <Form.Control {...register("title")} value={title} type="text" placeholder="Title" className="border-light shadow py-3 text-primary" />
+          <Form.Control {...register("title")} onChange={(e) => handleChange(e, setTitle)} value={title || ""} type="text" placeholder="Title" className="border-light shadow py-3 text-primary" />
           <Form.Text>{errors.title?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicDescription">
           <Form.Label>Description</Form.Label>
-          <Form.Control {...register("description")} as="textarea" rows={3} value={description} placeholder="Description" className="border-light shadow py-3 text-primary" />
+          <Form.Control {...register("description")} as="textarea" rows={3} onChange={(e) => handleChange(e, setDescription)} value={description || ""} placeholder="Description" className="border-light shadow py-3 text-primary" />
           <Form.Text>{errors.description?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-4" controlId="formBasicMeta">
           <Row className="mb-3">
             <Col>
-              <Form.Check onChange={() => handleCheckChange("wifi")} checked={metaCheck?.wifi} inline label="wifi" name="meta" />
+              <Form.Check onChange={() => handleCheckChange("wifi")} checked={metaCheck?.wifi || false} inline label="wifi" name="meta" />
             </Col>
             <Col>
-              <Form.Check onChange={() => handleCheckChange("parking")} checked={metaCheck?.parking} inline label="parking" name="meta" />
+              <Form.Check onChange={() => handleCheckChange("parking")} checked={metaCheck?.parking || false} inline label="parking" name="meta" />
             </Col>
             <Col>
-              <Form.Check onChange={() => handleCheckChange("breakfast")} checked={metaCheck?.breakfast} inline label="breakfast" name="meta" />
+              <Form.Check onChange={() => handleCheckChange("breakfast")} checked={metaCheck?.breakfast || false} inline label="breakfast" name="meta" />
             </Col>
             <Col>
-              <Form.Check onChange={() => handleCheckChange("pets")} checked={metaCheck?.pets} inline label="pets" name="meta" />
+              <Form.Check onChange={() => handleCheckChange("pets")} checked={metaCheck?.pets || false} inline label="pets" name="meta" />
             </Col>
             <Form.Text>{errors.meta?.message}</Form.Text>
           </Row>
@@ -147,20 +157,20 @@ const UpdateVenueForm = ({ data }) => {
           <Col>
             <Form.Group className="mb-4" controlId="formBasicPrice">
               <Form.Label>Price per night</Form.Label>
-              <Form.Control {...register("price")} value={price} type="number" placeholder="Price per night" className="border-light shadow py-3 text-primary" />
+              <Form.Control {...register("price")} onChange={(e) => handleChange(e, setPrice)} value={Number(price)} type="number" placeholder="Price per night" className="border-light shadow py-3 text-primary" />
               <Form.Text>{errors.price?.message}</Form.Text>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="formBasicMaxGuests">
               <Form.Label>Max guests</Form.Label>
-              <Form.Control {...register("maxGuests")} value={guests} type="number" placeholder="Maximum guests" className="border-light shadow py-3 text-primary" />
+              <Form.Control {...register("maxGuests")} onChange={(e) => handleChange(e, setGuests)} value={Number(guests)} type="number" placeholder="Maximum guests" className="border-light shadow py-3 text-primary" />
               <Form.Text>{errors.maxGuests?.message}</Form.Text>
             </Form.Group>
           </Col>
         </Row>
         <Select instanceId="dropdown" placeholder={location ? location : "Country"} options={options} onChange={setLocation} value={location} />
-        <Button onClick={() => setValue("images", imageArray)} variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
+        <Button onClick={() => setValue("images", imageArray, { shouldValidate: true })} variant="primary" type="submit" className="w-100 bg-secondary py-3 mt-4 border-0 shadow">
           Update Venue
         </Button>
         <Modal show={show} onHide={handleClose}>
