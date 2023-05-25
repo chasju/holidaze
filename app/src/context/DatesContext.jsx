@@ -20,7 +20,5 @@ const DatesReducer = (state, action) => {
 export const DatesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DatesReducer, INITIAL_STATE);
 
-  console.log(state);
-
   return <DatesContext.Provider value={{ dates: state.dates, dispatch }}>{children}</DatesContext.Provider>;
 };
