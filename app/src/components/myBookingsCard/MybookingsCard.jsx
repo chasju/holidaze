@@ -2,8 +2,6 @@ import formatDate from "@/utils/formatting/formatDate";
 import Link from "next/link";
 
 const MyBookingsCard = ({ data, dateFrom, dateTo }) => {
-  console.log(data);
-
   const from = formatDate(dateFrom);
   const to = formatDate(dateTo);
 

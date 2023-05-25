@@ -3,7 +3,7 @@ import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import { saveToStorage } from "@/utils/localStorage/saveToStorage";
 import axios from "axios";
 
-const createVenue = async (previewImage, name) => {
+const createVenue = async (previewImage, name, handleShow, handleFail) => {
   try {
     const storageProfile = getStorage("profile");
     const accessToken = storageProfile.accessToken;
@@ -22,7 +22,7 @@ const createVenue = async (previewImage, name) => {
     );
 
     // Opening register success modal
-    // handleShow();
+    handleShow();
 
     // Update localStorage
 
@@ -35,7 +35,7 @@ const createVenue = async (previewImage, name) => {
   } catch (error) {
     const message = `${error?.message}. If the problem persists please contact us.`;
     // Sending error message
-    // handleFail(message);
+    handleFail(message);
   }
 };
 
