@@ -93,6 +93,19 @@ const UpdateVenueForm = ({ data }) => {
 
   const options = useMemo(() => countryList().data, []);
 
+  // Input updated values
+  const handleChange = (e, set) => {
+    if (e.target.value.charAt(0) == 0) {
+      e.target.value = e.target.value.substring(1);
+    }
+
+    set(e.target.value);
+  };
+
+  // id
+
+  const id = data?.id;
+
   function onSubmit() {
     const updated = {
       media: imageArray,
@@ -106,12 +119,8 @@ const UpdateVenueForm = ({ data }) => {
 
     console.log(updated);
 
-    // updateVenue(updated, handleShow, handleFail);
+    updateVenue(updated, handleShow, handleFail, id);
   }
-
-  const handleChange = (e, set) => {
-    set(e.target.value);
-  };
 
   return (
     <div>
@@ -174,9 +183,9 @@ const UpdateVenueForm = ({ data }) => {
           Update Venue
         </Button>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Body className="rounded-top text-center text-primary fw-bold fs-3 p-5">Venue updates!</Modal.Body>
+          <Modal.Body className="rounded-top text-center text-primary fw-bold fs-3 p-5">Venue updated!</Modal.Body>
           <div className=" rounded-bottom d-flex justify-content-center pb-5">
-            <Button variant="secondary" href="/profile">
+            <Button variant="secondary" href={`../venue?id=${id}`}>
               Go to venue
             </Button>
           </div>
