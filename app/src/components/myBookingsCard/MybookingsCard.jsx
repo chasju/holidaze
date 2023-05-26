@@ -10,7 +10,7 @@ const MyBookingsCard = ({ data, dateFrom, dateTo }) => {
       <Link href={`/venue?id=${data?.id}`} className="text-decoration-none">
         <img src={data?.media?.[0]} alt={data?.name} style={{ objectFit: "cover", width: 70, height: 70 }} />
       </Link>
-      <div className="d-flex align-items-center gap-4">
+      <div className="d-flex flex-grow-1 align-items-center justify-content-between gap-4">
         <div>
           <h2 className="fs-4 text-primary text-wrap text-break">{data?.name}</h2>
           <div aria-label="Price per night" className="text-secondary">

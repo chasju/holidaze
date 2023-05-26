@@ -24,7 +24,7 @@ export default function profilePage() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" style={{ maxWidth: 700 }}>
       <h1 className="text-primary">Profile</h1>
       <div className="mt-4 d-flex align-items-center gap-3">
         <div className="position-relative" style={{ width: 80 }}>
@@ -46,19 +46,21 @@ export default function profilePage() {
           My Info
         </Button>
       </div>
-      {active === "venues" &&
-        venues?.map((venue) => {
-          return <ProfileCard key={venue?.id} data={venue} />;
-        })}
-      {active === "bookings" &&
-        bookings?.map((booking) => {
-          return <MyBookingsCard key={booking?.id} data={booking?.venue} dateFrom={booking?.dateFrom} dateTo={booking?.dateTo} />;
-        })}
-      {active === "info" && (
-        <Container className="bg-lighter border-1 p-4 mt-4 rounded-1">
-          <div>email: {profile.email}</div>
-        </Container>
-      )}
+      <div className="mt-5 row row-lg-cols-2 gap-5 justify-content-between">
+        {active === "venues" &&
+          venues?.map((venue) => {
+            return <ProfileCard key={venue?.id} data={venue} />;
+          })}
+        {active === "bookings" &&
+          bookings?.map((booking) => {
+            return <MyBookingsCard key={booking?.id} data={booking?.venue} dateFrom={booking?.dateFrom} dateTo={booking?.dateTo} />;
+          })}
+        {active === "info" && (
+          <Container className="bg-lighter border-1 p-4 mt-4 rounded-1">
+            <div>email: {profile.email}</div>
+          </Container>
+        )}
+      </div>
     </Container>
   );
 }
