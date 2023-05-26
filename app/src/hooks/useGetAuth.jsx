@@ -31,7 +31,24 @@ function useGetAuth(url) {
     getData();
   }, [url]);
 
-  return { data, isLoading, isError };
+  const reFetch = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      setData(response.data);
+    } catch (error) {
+      setIsError(true);
+    }
+    setIsLoading(false);
+  };
+
+  return { data, isLoading, isError, reFetch };
 }
 
 export default useGetAuth;
