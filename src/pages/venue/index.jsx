@@ -11,22 +11,10 @@ import Loader from "@/components/loader/Loader";
 import ErrorMessage from "@/components/errorMessage/Errormessage";
 
 export default function venuePage() {
-  const storageProfile = getStorage("profile");
-  const [isLoggedIn, setIsLoggedIn] = useState("false");
-
-  useEffect(() => {
-    if (storageProfile) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [storageProfile]);
-
   const router = useRouter();
   const { id } = router.query;
 
   const { data, isLoading, isError } = useGet(`${BASE_URL}/venues/${id}?_bookings=true`);
-  console.log(data);
 
   if (isLoading) {
     return <Loader />;
@@ -43,12 +31,7 @@ export default function venuePage() {
         <meta name="description" content="View specific venue" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {isLoggedIn && <VenueCard data={data} />}
-      {!isLoggedIn && (
-        <Container className="mt-5" style={{ maxWidth: 700 }}>
-          <NotLoggedIn />
-        </Container>
-      )}
+      <VenueCard data={data} />
     </div>
   );
 }
