@@ -23,6 +23,9 @@ pnpm dev
 Create a branch.
 Create a pull request into main for code approval.
 
+When code is approved your code will go into deployement and you can see the results at 
+https://holidaze-chasju.netlify.app
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
