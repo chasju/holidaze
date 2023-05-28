@@ -8,8 +8,20 @@ import "react-date-range/dist/theme/default.css";
 import ImageCarousel from "../imageCarousel/ImageCarousel";
 import BookNow from "../bookNow/BookNow";
 import getAllDates from "@/utils/getAllDates";
+import { getStorage } from "@/utils/localStorage/getLocalStorage";
 
 const VenueCard = ({ data }) => {
+  const storageProfile = getStorage("profile");
+  const [isLoggedIn, setIsLoggedIn] = useState("false");
+
+  useEffect(() => {
+    if (storageProfile) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [storageProfile]);
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -70,14 +82,16 @@ const VenueCard = ({ data }) => {
                 <Card.Text className={data?.meta?.pets ? "" : "text-lighter text-decoration-line-through"}>Pets</Card.Text>
               </div>
             </div>
-            <div className="mt-5">
-              <h3 className="fs-3 text-primary"> Calendar</h3>
-              <DateRange disabledDates={bookedArray} className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
-            </div>
+            {isLoggedIn && (
+              <div className="mt-5">
+                <h3 className="fs-3 text-primary"> Calendar</h3>
+                <DateRange disabledDates={bookedArray} className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
+              </div>
+            )}
           </Card.Body>
         </Card>
       </Container>
-      <BookNow dates={date} price={data.price} id={data.id} />
+      {isLoggedIn && <BookNow dates={date} price={data.price} id={data.id} />}
     </div>
   );
 };
