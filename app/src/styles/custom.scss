@@ -1,5 +1,3 @@
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 $primary: #203262;
 $secondary: #5b6bad;
 $danger: #7785bc;
@@ -16,6 +14,7 @@ $theme-colors: (
   "lighter": $lighter,
 );
 
+@import "~bootstrap/scss/bootstrap";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 // NAV overrides
