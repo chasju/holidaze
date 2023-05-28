@@ -17,88 +17,88 @@ $theme-colors: (
 @import "~bootstrap/scss/bootstrap";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-// NAV overrides
+// // NAV overrides
 
-.navbar-toggler-icon {
-  background-image: unset;
-  background-color: $primary;
-  display: block;
-  width: 25px;
-  height: 5px;
-  border-radius: 5px;
-  position: relative;
-}
+// .navbar-toggler-icon {
+//   background-image: unset;
+//   background-color: $primary;
+//   display: block;
+//   width: 25px;
+//   height: 5px;
+//   border-radius: 5px;
+//   position: relative;
+// }
 
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
-  content: "";
-  background-color: $primary;
-  display: block;
-  width: 25px;
-  height: 5px;
-  border-radius: 5px;
-  position: absolute;
-}
+// .navbar-toggler-icon::before,
+// .navbar-toggler-icon::after {
+//   content: "";
+//   background-color: $primary;
+//   display: block;
+//   width: 25px;
+//   height: 5px;
+//   border-radius: 5px;
+//   position: absolute;
+// }
 
-.navbar-toggler-icon::before {
-  translate: 0 -10px;
-  width: 17px;
-}
+// .navbar-toggler-icon::before {
+//   translate: 0 -10px;
+//   width: 17px;
+// }
 
-.navbar-toggler-icon::after {
-  translate: 0 10px;
-}
+// .navbar-toggler-icon::after {
+//   translate: 0 10px;
+// }
 
-// SEARCH overrides
+// // SEARCH overrides
 
-.form-control::placeholder {
-  color: $primary;
-  font-size: small;
-}
+// .form-control::placeholder {
+//   color: $primary;
+//   font-size: small;
+// }
 
-// CALENDAR overrides
+// // CALENDAR overrides
 
-.rdrMonth {
-  width: 100% !important;
-}
+// .rdrMonth {
+//   width: 100% !important;
+// }
 
-.rdrMonthAndYearPickers {
-  flex-wrap: wrap;
-}
+// .rdrMonthAndYearPickers {
+//   flex-wrap: wrap;
+// }
 
-.rdrDateDisplayWrapper {
-  background-color: unset !important;
-}
+// .rdrDateDisplayWrapper {
+//   background-color: unset !important;
+// }
 
-.rdrDateDisplayItem input {
-  color: $secondary !important;
-  font-weight: 600;
-}
+// .rdrDateDisplayItem input {
+//   color: $secondary !important;
+//   font-weight: 600;
+// }
 
-.rdrWeekDay {
-  color: $primary !important;
-  font-weight: 600 !important;
-}
+// .rdrWeekDay {
+//   color: $primary !important;
+//   font-weight: 600 !important;
+// }
 
-.rdrStartEdge,
-.rdrEndEdge,
-.rdrInRange {
-  color: $secondary !important;
-}
+// .rdrStartEdge,
+// .rdrEndEdge,
+// .rdrInRange {
+//   color: $secondary !important;
+// }
 
-// BUTTON overrides
+// // BUTTON overrides
 
-.btn.active {
-  background-color: #203262;
-}
+// .btn.active {
+//   background-color: #203262;
+// }
 
-#register:hover,
-#login:hover,
-.basic-nav-dropdown:hover {
-  background-color: $primary !important;
-  color: white;
-}
+// #register:hover,
+// #login:hover,
+// .basic-nav-dropdown:hover {
+//   background-color: $primary !important;
+//   color: white;
+// }
 
-#basic-nav-dropdown:hover {
-  color: white !important;
-}
+// #basic-nav-dropdown:hover {
+//   color: white !important;
+// }
