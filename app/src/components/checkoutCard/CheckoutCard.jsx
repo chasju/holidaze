@@ -91,9 +91,12 @@ const CheckoutCard = ({ data }) => {
               {sumPerNight} kr
             </Card.Text>
           </div>
-          <select value={parseInt(selectedAmount)} onChange={handleChange} name="numberOfGuests" id="numberOfGuests">
+          <select value={parseInt(selectedAmount)} onChange={handleChange} name="numberOfGuests" id="numberOfGuests" className="border-1 rounded-1 border-primary">
             {options}
           </select>
+          <label htmlFor="numberOfGuests" className="ms-4 text-primary fw-semibold">
+            Guests
+          </label>
         </Card.Body>
       </Card>
       <CheckoutForm guests={parseInt(selectedAmount)} dateFrom={dates[0]?.startDate} dateTo={dates[0]?.endDate} />
