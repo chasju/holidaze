@@ -8,7 +8,6 @@ import "react-date-range/dist/theme/default.css";
 import ImageCarousel from "../imageCarousel/ImageCarousel";
 import BookNow from "../bookNow/BookNow";
 import getAllDates from "@/utils/getAllDates";
-import ErrorMessage from "../errorMessage/Errormessage";
 
 const VenueCard = ({ data }) => {
   const [date, setDate] = useState([
