@@ -41,49 +41,44 @@ const VenueCard = ({ data }) => {
 
   return (
     <div>
-      {data?.length > 0 && (
-        <div>
-          <Container className="mt-5" style={{ maxWidth: 700 }}>
-            <Card className="border-0">
-              <ImageCarousel data={data} />
-              <Card.Body>
-                <div className="d-flex justify-content-between">
-                  <div>
-                    <Card.Title>
-                      <h2 className="fs-4 text-primary text-capitalize">{data.name}</h2>
-                    </Card.Title>
-                    <Card.Text aria-label="Price per night" className="text-secondary">
-                      {data.price} kr/night
-                    </Card.Text>
-                  </div>
-                  <div>
-                    <Card.Text aria-label="Max number of people" className="d-flex justify-content-center align-items-baseline gap-1">
-                      <FontAwesomeIcon icon={faUser} />
-                      <span>{data.maxGuests}</span>
-                    </Card.Text>
-                  </div>
-                </div>
-                <div className="mt-5">
-                  <h3 className="fs-3 text-primary">Description</h3>
-                  <Card.Text className="text-secondary">{data.description}</Card.Text>
-                  <div className="mt-5 d-flex gap-2 flex-wrap justify-content-between text-primary fw-semibold">
-                    <Card.Text className={data?.meta?.wifi ? "" : "text-lighter text-decoration-line-through"}>Wifi</Card.Text>
-                    <Card.Text className={data?.meta?.parking ? "" : "text-lighter text-decoration-line-through"}>Parking</Card.Text>
-                    <Card.Text className={data?.meta?.breakfast ? "" : "text-lighter text-decoration-line-through"}>Breakfast</Card.Text>
-                    <Card.Text className={data?.meta?.pets ? "" : "text-lighter text-decoration-line-through"}>Pets</Card.Text>
-                  </div>
-                </div>
-                <div className="mt-5">
-                  <h3 className="fs-3 text-primary"> Calendar</h3>
-                  <DateRange disabledDates={bookedArray} className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
-                </div>
-              </Card.Body>
-            </Card>
-          </Container>
-          <BookNow dates={date} price={data.price} id={data.id} />
-        </div>
-      )}
-      {data?.length === 0 && <ErrorMessage message="We couldn't seem to find the correct venue." cards={false} />}
+      <Container className="mt-5" style={{ maxWidth: 700 }}>
+        <Card className="border-0">
+          <ImageCarousel data={data} />
+          <Card.Body>
+            <div className="d-flex justify-content-between">
+              <div>
+                <Card.Title>
+                  <h2 className="fs-4 text-primary text-capitalize">{data.name}</h2>
+                </Card.Title>
+                <Card.Text aria-label="Price per night" className="text-secondary">
+                  {data.price} kr/night
+                </Card.Text>
+              </div>
+              <div>
+                <Card.Text aria-label="Max number of people" className="d-flex justify-content-center align-items-baseline gap-1">
+                  <FontAwesomeIcon icon={faUser} />
+                  <span>{data.maxGuests}</span>
+                </Card.Text>
+              </div>
+            </div>
+            <div className="mt-5">
+              <h3 className="fs-3 text-primary">Description</h3>
+              <Card.Text className="text-secondary">{data.description}</Card.Text>
+              <div className="mt-5 d-flex gap-2 flex-wrap justify-content-between text-primary fw-semibold">
+                <Card.Text className={data?.meta?.wifi ? "" : "text-lighter text-decoration-line-through"}>Wifi</Card.Text>
+                <Card.Text className={data?.meta?.parking ? "" : "text-lighter text-decoration-line-through"}>Parking</Card.Text>
+                <Card.Text className={data?.meta?.breakfast ? "" : "text-lighter text-decoration-line-through"}>Breakfast</Card.Text>
+                <Card.Text className={data?.meta?.pets ? "" : "text-lighter text-decoration-line-through"}>Pets</Card.Text>
+              </div>
+            </div>
+            <div className="mt-5">
+              <h3 className="fs-3 text-primary"> Calendar</h3>
+              <DateRange disabledDates={bookedArray} className="w-100" editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} />
+            </div>
+          </Card.Body>
+        </Card>
+      </Container>
+      <BookNow dates={date} price={data.price} id={data.id} />
     </div>
   );
 };
