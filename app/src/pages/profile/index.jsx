@@ -52,7 +52,7 @@ export default function profilePage() {
         <Button variant="secondary" active={active === "venues" ? true : false} onClick={() => handleChange("venues")} style={{ width: 150 }} className="flex-shrink-0">
           My Venues
         </Button>
-        <Button variant="secondary" active={active === "bookings" ? true : false} onClick={() => handleChange("bookings")} style={{ width: 150 }} className="flex-shrink-0">
+        <Button variant="secondary" active={active === "myBookings" ? true : false} onClick={() => handleChange("myBookings")} style={{ width: 150 }} className="flex-shrink-0">
           My Bookings
         </Button>
         <Button variant="secondary" active={active === "info" ? true : false} onClick={() => handleChange("info")} style={{ width: 150 }} className="flex-shrink-0">
@@ -62,9 +62,9 @@ export default function profilePage() {
       <div className="mt-5 row row-lg-cols-2 gap-5 justify-content-between">
         {active === "venues" &&
           venues?.map((venue) => {
-            return <ProfileCard key={venue?.id} data={venue} onDelete={onDelete} />;
+            return <ProfileCard key={venue?.id} venue={venue} onDelete={onDelete} />;
           })}
-        {active === "bookings" &&
+        {active === "myBookings" &&
           bookings?.map((booking) => {
             return <MyBookingsCard key={booking?.id} data={booking?.venue} dateFrom={booking?.dateFrom} dateTo={booking?.dateTo} />;
           })}
