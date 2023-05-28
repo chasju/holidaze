@@ -83,7 +83,7 @@ const NavComponent = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown" className="d-none d-lg-flex justify-content-center align-items-center bg-light rounded-circle mt-3 text-primary" style={{ width: 50, height: 50 }}>
+        <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown" className="basic-nav-dropdown d-none d-lg-flex justify-content-center align-items-center bg-light rounded-circle mt-3 text-primary" style={{ width: 50, height: 50 }}>
           {isLoggedIn && (
             <div>
               <NavDropdown.Item href="/">Home</NavDropdown.Item>

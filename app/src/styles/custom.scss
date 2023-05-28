@@ -90,3 +90,14 @@ $theme-colors: (
 .btn.active {
   background-color: #203262;
 }
+
+#register:hover,
+#login:hover,
+.basic-nav-dropdown:hover {
+  background-color: $primary !important;
+  color: white;
+}
+
+#basic-nav-dropdown:hover {
+  color: white !important;
+}
