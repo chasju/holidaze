@@ -1,5 +1,5 @@
+import "@/styles/custom.scss";
 import "@/styles/globals.scss";
-import "../styles/custom.scss";
 import { Poppins } from "next/font/google";
 import Layout from "@/components/Layout";
 import SSRProvider from "react-bootstrap/SSRProvider";
