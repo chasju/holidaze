@@ -24,12 +24,10 @@ export default function Home() {
         <meta name="description" content="Book your next stay here" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main>
-        <Search venues={venues} setSearchResults={setSearchResults} />
-        <Container className="m-auto row row-lg-cols-2 gap-5 justify-content-between">
-          <CardsResult searchResults={searchResults} />
-        </Container>
-      </main>
+      <Search venues={venues} setSearchResults={setSearchResults} />
+      <Container className="m-auto row row-lg-cols-2 gap-5 justify-content-between">
+        <CardsResult searchResults={searchResults} />
+      </Container>
     </div>
   );
 }

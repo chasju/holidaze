@@ -1,6 +1,7 @@
 import CreateVenueForm from "@/components/createVenueForm/CreateVenueForm";
 import NotLoggedIn from "@/components/notLoggedIn/NotLoggedIn";
 import { getStorage } from "@/utils/localStorage/getLocalStorage";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
 
@@ -18,6 +19,11 @@ export default function createVenuePage() {
 
   return (
     <div>
+      <Head>
+        <title>Create a new venue - Holidaze</title>
+        <meta name="description" content="Create a new venue here" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Container className="mt-5" style={{ maxWidth: 700 }}>
         {isLoggedIn && (
           <Card className="border-0">
