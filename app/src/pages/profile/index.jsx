@@ -5,22 +5,35 @@ import ProfileCard from "@/components/profileCard/ProfileCard";
 import { BASE_URL } from "@/utils/baseUrl";
 import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import useGetAuth from "@/hooks/useGetAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyBookingsCard from "@/components/myBookingsCard/MybookingsCard";
 import Link from "next/link";
 
 export default function profilePage() {
   const profile = getStorage("profile");
 
-  const { data, isLoading, isError } = useGetAuth(`${BASE_URL}/profiles/${profile?.name}?_bookings=true&_venues=true`);
+  const { data, isLoading, isError, reFetch } = useGetAuth(`${BASE_URL}/profiles/${profile?.name}?_bookings=true&_venues=true`);
 
-  const venues = data?.venues;
-  const bookings = data?.bookings;
+  const [getData, setGetData] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setGetData(data);
+    }
+  }, [data]);
+
+  const venues = getData?.venues;
+  const bookings = getData?.bookings;
 
   const [active, setActive] = useState("venues");
 
   const handleChange = (button) => {
     setActive(button);
+  };
+
+  const onDelete = () => {
+    reFetch();
+    setGetData(data);
   };
 
   return (
@@ -29,11 +42,11 @@ export default function profilePage() {
       <div className="mt-4 d-flex align-items-center gap-3">
         <div className="position-relative" style={{ width: 80 }}>
           <img src={data?.avatar} alt="avatar" className="rounded-circle shadow" style={{ width: 70, height: 70, objectFit: "cover" }} />
-          <Link href={`/profile/edit?name=${data?.name}`}>
+          <Link href={`/profile/edit?name=${getData?.name}`}>
             <FontAwesomeIcon icon={faPen} className="position-absolute end-0 bottom-0 text-primary" />
           </Link>
         </div>
-        <p className="mb-0 text-primary fw-semibold fs-4">Hello {data?.name}</p>
+        <p className="mb-0 text-primary fw-semibold fs-4">Hello {getData?.name}</p>
       </div>
       <div className="w-100 mt-4 d-flex gap-3 overflow-hidden overflow-scroll">
         <Button variant="secondary" active={active === "venues" ? true : false} onClick={() => handleChange("venues")} style={{ width: 150 }} className="flex-shrink-0">
@@ -49,7 +62,7 @@ export default function profilePage() {
       <div className="mt-5 row row-lg-cols-2 gap-5 justify-content-between">
         {active === "venues" &&
           venues?.map((venue) => {
-            return <ProfileCard key={venue?.id} data={venue} />;
+            return <ProfileCard key={venue?.id} data={venue} onDelete={onDelete} />;
           })}
         {active === "bookings" &&
           bookings?.map((booking) => {
