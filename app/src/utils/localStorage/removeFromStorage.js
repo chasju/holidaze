@@ -1,3 +1,5 @@
 export const removeFromStorage = (key) => {
-  localStorage.removeItem(key);
+  if (typeof window !== "undefined") {
+    return localStorage.removeItem(key);
+  }
 };
