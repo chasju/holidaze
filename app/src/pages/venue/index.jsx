@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import NotLoggedIn from "@/components/notLoggedIn/NotLoggedIn";
 import { Container } from "react-bootstrap";
 import Head from "next/head";
+import Loader from "@/components/loader/Loader";
+import ErrorMessage from "@/components/errorMessage/Errormessage";
 
 export default function venuePage() {
   const storageProfile = getStorage("profile");
@@ -24,15 +26,14 @@ export default function venuePage() {
   const { id } = router.query;
 
   const { data, isLoading, isError } = useGet(`${BASE_URL}/venues/${id}?_bookings=true`);
+  console.log(data);
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
   if (isError) {
-    <div>
-      <p>There was an error loading the content. Please contact us if the issue persists.</p>
-    </div>;
+    <ErrorMessage message="Couldn't find the correct venue." cards={false} />;
   }
 
   return (
