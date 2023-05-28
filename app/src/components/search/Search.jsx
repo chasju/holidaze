@@ -13,7 +13,7 @@ const Search = ({ venues, setSearchResults }) => {
       return setSearchResults(venues);
     }
 
-    const resultsArray = venues.filter((venue) => venue.name.includes(e.target.value));
+    const resultsArray = venues.filter((venue) => venue.name.toLowerCase().includes(e.target.value.toLowerCase()));
 
     setSearchResults(resultsArray);
   };
