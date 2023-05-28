@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import "../styles/custom.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Poppins } from "next/font/google";
 import Layout from "@/components/Layout";
 import SSRProvider from "react-bootstrap/SSRProvider";
