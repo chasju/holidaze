@@ -41,7 +41,7 @@ const VenueCard = ({ data }) => {
   return (
     <div>
       <Container className="mt-5" style={{ maxWidth: 700 }}>
-        <Card className="border-0 ">
+        <Card className="border-0">
           <ImageCarousel data={data} />
           <Card.Body>
             <div className="d-flex justify-content-between">

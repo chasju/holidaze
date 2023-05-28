@@ -5,9 +5,11 @@ import useGet from "@/hooks/useGet";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import CardsResult from "@/components/cardsResult/CardsResult";
+import Loader from "@/components/loader/Loader";
+import ErrorMessage from "@/components/errorMessage/Errormessage";
 
 export default function Home() {
-  const { data } = useGet(`${BASE_URL}/venues?sort=updated&sortOrder=desc`);
+  const { data, isLoading, isError } = useGet(`${BASE_URL}/venues?sort=updated&sortOrder=desc`);
 
   const [venues, setVenues] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
@@ -16,6 +18,14 @@ export default function Home() {
     setVenues(data);
     setSearchResults(data);
   }, [data]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorMessage message="Seems like there are no venues rn." cards={true} />;
+  }
 
   return (
     <div>
