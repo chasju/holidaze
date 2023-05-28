@@ -5,16 +5,42 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { removeFromStorage } from "@/utils/localStorage/removeFromStorage";
+import { getStorage } from "@/utils/localStorage/getLocalStorage";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const NavComponent = () => {
+  const router = useRouter();
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleIsNavOpen = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  console.log(isNavOpen);
+
   const handleLogOut = () => {
     removeFromStorage("profile");
+    handleIsNavOpen();
   };
+
+  const [isLoggedIn, setIsLoggedIn] = useState("false");
+  const storageProfile = getStorage("profile");
+
+  // const handleLoggedIn = () => {
+  //   if (storageProfile) {
+  //     console.log("true");
+  //   } else {
+  //     console.log("false");
+  //   }
+  // };
+
+  // handleLoggedIn();
 
   return (
     <div>
       <Container className="d-lg-flex justify-content-between align-items-center">
-        <Navbar expand="lg" className="mt-3">
+        <Navbar expanded={isNavOpen} expand="lg" className="mt-3">
           <Nav>
             <Nav.Link href="/create/venue">
               <div className="bg-secondary shadow-sm p-2 px-4 rounded-1 d-lg-none">
@@ -25,8 +51,8 @@ const NavComponent = () => {
           <Navbar.Brand href="/" className="text-primary">
             HOLIDAZE
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 d-lg-none" />
-          <Navbar.Collapse id="basic-navbar-nav" className="d-lg-none">
+          <Navbar.Toggle onClick={handleIsNavOpen} aria-controls="basic-navbar-nav" className="border-0 d-lg-none" />
+          <Navbar.Collapse id="basic-navbar-nav" className={`d-lg-none`}>
             <Nav className="mt-5 d-lg-none">
               <div>
                 <Nav.Link href="/" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
