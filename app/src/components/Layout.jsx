@@ -1,4 +1,4 @@
-import NavComponent from "./nav/Nav.jsx";
+import NavComponent from "./nav/Nav";
 import FooterComponent from "./footer/Footer";
 
 const Layout = ({ children }) => {
