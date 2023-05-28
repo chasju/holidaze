@@ -4,8 +4,13 @@ import Navbar from "react-bootstrap/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { removeFromStorage } from "@/utils/localStorage/removeFromStorage";
 
 const NavComponent = () => {
+  const handleLogOut = () => {
+    removeFromStorage("profile");
+  };
+
   return (
     <div>
       <Container className="d-lg-flex justify-content-between align-items-center">
@@ -23,27 +28,31 @@ const NavComponent = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 d-lg-none" />
           <Navbar.Collapse id="basic-navbar-nav" className="d-lg-none">
             <Nav className="mt-5 d-lg-none">
-              <Nav.Link href="/" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
-                HOME
-              </Nav.Link>
-              <Nav.Link href="/bookings" className="bg-dark text-primary fw-bold rounded-1 text-center py-3">
-                MY BOOKINGS
-              </Nav.Link>
-              <Nav.Link href="/venues" className="bg-light text-primary fw-bold rounded-1 text-center py-3">
-                MY VENUES
-              </Nav.Link>
-              <Nav.Link href="/profile" className="bg-lighter text-primary fw-bold rounded-1 text-center py-3">
-                MY PROFILE
-              </Nav.Link>
-              <Nav.Link href="/login" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
-                LOGIN
-              </Nav.Link>
-              <Nav.Link href="/register " className="bg-dark text-primary fw-bold rounded-1 text-center py-3">
-                REGISTER
-              </Nav.Link>
-              <Nav.Link href="/" className="bg-light text-primary fw-bold rounded-1 text-center py-3">
-                LOGOUT
-              </Nav.Link>
+              <div>
+                <Nav.Link href="/" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
+                  HOME
+                </Nav.Link>
+                <Nav.Link href="/bookings" className="bg-dark text-primary fw-bold rounded-1 text-center py-3">
+                  MY BOOKINGS
+                </Nav.Link>
+                <Nav.Link href="/venues" className="bg-light text-primary fw-bold rounded-1 text-center py-3">
+                  MY VENUES
+                </Nav.Link>
+                <Nav.Link href="/profile" className="bg-lighter text-primary fw-bold rounded-1 text-center py-3">
+                  MY PROFILE
+                </Nav.Link>
+              </div>
+              <div>
+                <Nav.Link href="/login" className="bg-danger text-primary fw-bold rounded-1 text-center py-3">
+                  LOGIN
+                </Nav.Link>
+                <Nav.Link href="/register " className="bg-dark text-primary fw-bold rounded-1 text-center py-3">
+                  REGISTER
+                </Nav.Link>
+                <Nav.Link onClick={handleLogOut} className="w-100 bg-light text-primary fw-bold border-0 rounded-1 text-center py-3">
+                  LOG OUT
+                </Nav.Link>
+              </div>
             </Nav>
             <Nav className="mt-5 d-lg-none">
               <Nav.Link href="/create/venue" className="bg-danger text-white fw-bold rounded-1 text-center py-3">
@@ -58,7 +67,7 @@ const NavComponent = () => {
           <NavDropdown.Item href="/login">Login</NavDropdown.Item>
           <NavDropdown.Item href="/register">Register</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item>Log out</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleLogOut}>Log out</NavDropdown.Item>
         </NavDropdown>
       </Container>
     </div>
