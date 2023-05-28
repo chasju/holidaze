@@ -3,7 +3,7 @@ import { Accordion, ListGroup } from "react-bootstrap";
 
 const BookedDates = ({ bookings, id }) => {
   return (
-    <Accordion.Item eventKey={id}>
+    <Accordion.Item eventKey={id} style={{ position: "relative", zIndex: 10 }}>
       <Accordion.Header>Bookings</Accordion.Header>
       <Accordion.Body>
         <ListGroup>
