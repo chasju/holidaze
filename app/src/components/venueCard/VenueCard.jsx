@@ -5,7 +5,7 @@ import { Card, Container } from "react-bootstrap";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import ImageCarousel from "../imageCarousel/ImageCarousel.jsx";
+import ImageCarousel from "../imageCarousel/ImageCarousel";
 import BookNow from "../bookNow/BookNow";
 import getAllDates from "@/utils/getAllDates";
 
