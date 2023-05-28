@@ -5,6 +5,7 @@ import * as yup from "yup";
 import Link from "next/link";
 import registerUser from "@/hooks/auth/register";
 import { useState } from "react";
+import Head from "next/head";
 
 const schema = yup.object({
   fullName: yup.string().required("Please provide your full name.").min(3, "Name is too short - must be minimum 3 characters."),
@@ -48,6 +49,11 @@ export default function registerPage() {
 
   return (
     <div>
+      <Head>
+        <title>Register a profile - Holidaze</title>
+        <meta name="description" content="Register a profile here" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Container className="mt-5 pt-5">
         <Form onSubmit={handleSubmit(onSubmit)} className="m-auto" style={{ maxWidth: 500 }}>
           <h1 className="text-primary fw-bold mb-3">Register</h1>

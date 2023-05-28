@@ -6,6 +6,7 @@ import { BASE_URL } from "@/utils/baseUrl";
 import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import NotLoggedIn from "@/components/notLoggedIn/NotLoggedIn";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 export default function checkout() {
   const router = useRouter();
@@ -25,9 +26,16 @@ export default function checkout() {
   }, [storageProfile]);
 
   return (
-    <Container className="mt-5 pt-5">
-      {isLoggedIn && <CheckoutCard data={data} />}
-      {!isLoggedIn && <NotLoggedIn />}
-    </Container>
+    <>
+      <Head>
+        <title>Checkout - Holidaze</title>
+        <meta name="description" content="Checkout your booked dates" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Container className="mt-5 pt-5">
+        {isLoggedIn && <CheckoutCard data={data} />}
+        {!isLoggedIn && <NotLoggedIn />}
+      </Container>
+    </>
   );
 }

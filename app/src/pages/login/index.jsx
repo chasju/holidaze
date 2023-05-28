@@ -5,6 +5,7 @@ import * as yup from "yup";
 import Link from "next/link";
 import loginUser from "@/hooks/auth/login";
 import { useState } from "react";
+import Head from "next/head";
 
 const schema = yup.object({
   password: yup.string().required("Please provide a password.").min(8, "Password is too short - must be minimum 8 characters."),
@@ -46,6 +47,11 @@ export default function loginPage() {
 
   return (
     <div>
+      <Head>
+        <title>Login - Holidaze</title>
+        <meta name="description" content="Login to be able to create venues and book stays" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Container className="mt-5 pt-5">
         <Form onSubmit={handleSubmit(onSubmit)} className="m-auto" style={{ maxWidth: 500 }}>
           <h1 className="text-primary fw-bold mb-3">Login</h1>

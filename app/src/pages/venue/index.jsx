@@ -6,6 +6,7 @@ import { getStorage } from "@/utils/localStorage/getLocalStorage";
 import { useEffect, useState } from "react";
 import NotLoggedIn from "@/components/notLoggedIn/NotLoggedIn";
 import { Container } from "react-bootstrap";
+import Head from "next/head";
 
 export default function venuePage() {
   const storageProfile = getStorage("profile");
@@ -36,6 +37,11 @@ export default function venuePage() {
 
   return (
     <div>
+      <Head>
+        <title>{data?.name} - Holidaze</title>
+        <meta name="description" content="View specific venue" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {isLoggedIn && <VenueCard data={data} />}
       {!isLoggedIn && (
         <Container className="mt-5" style={{ maxWidth: 700 }}>
