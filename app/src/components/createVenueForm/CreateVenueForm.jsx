@@ -154,7 +154,7 @@ const CreateVenueForm = () => {
           <Modal.Body className="rounded-top text-center text-primary fw-bold fs-3 p-5">Venue created!</Modal.Body>
           <div className=" rounded-bottom d-flex justify-content-center pb-5">
             <Button variant="secondary" href="/profile">
-              Go to venue
+              Go to your venues
             </Button>
           </div>
         </Modal>
