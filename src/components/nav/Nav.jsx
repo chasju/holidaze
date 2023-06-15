@@ -88,7 +88,7 @@ const NavComponent = () => {
             <div>
               <NavDropdown.Item href="/">Home</NavDropdown.Item>
               <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/create">Create Venue</NavDropdown.Item>
+              <NavDropdown.Item href="/create/venue">Create Venue</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogOut}>Log out</NavDropdown.Item>
             </div>
